@@ -1,0 +1,30 @@
+{
+	"schema_version": 1,
+	"quilt_loader": {
+		"group": "io.github.twilightflower",
+		"id": "nioresourcepack",
+		"version": "${version}",
+		"metadata": {
+			"name": "NIO Resource Pack",
+			"description": "Library providing a ResourcePack implementation based on nio",
+			"contributors": {
+				"TwilightFlower": "Owner"
+			},
+			"contact": {
+				"issues": "https://github.com/TwilightFlower/nioresourcepack/issues",
+				"sources": "https://github.com/TwilightFlower/nioresourcepack"
+			}
+		},
+		"intermediate_mappings": "net.fabricmc:intermediary",
+		"depends": [
+			{
+				"id": "quilt_loader",
+				"versions": ">=0.17.0-"
+			},
+			{
+				"id": "minecraft",
+				"versions": ">=1.19.2"
+			}
+		]
+	}
+}
