@@ -1,5 +1,6 @@
 package io.github.twilightflower.nioresourcepack;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.FileVisitResult;
@@ -182,6 +183,10 @@ public class NioResourcePack implements ResourcePack {
 		return isValidNamespaceChar(c) || c == '/';
 	}
 	
+	private static String fixPathSeparator(String path) {
+		return path.replace(File.separatorChar, '/');
+	}
+	
 	private static class FindResourcesFileVisitor extends SimpleFileVisitor<Path> {
 		final Consumer<Identifier> callback;
 		final Path root;
@@ -207,7 +212,7 @@ public class NioResourcePack implements ResourcePack {
 		@Override
 		public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) {
 			if(isValidPath(file.getFileName().toString())) {
-				String fname = namespaceRoot.relativize(file).toString();
+				String fname = fixPathSeparator(namespaceRoot.relativize(file).toString());
 				callback.accept(new Identifier(namespace, fname));
 			} else {
 				LOGGER.warn("Resource search skipping file {} as its name is not a valid identifier path", root.relativize(file));
